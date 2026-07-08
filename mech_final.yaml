@@ -8729,16 +8729,28 @@ reactions:
     Reaction index: Chemkin #810; RMG #865
     Library reaction: primaryNitrogenLibrary
     Flux pairs: HCO(32), CO(33); NO(14), HNO(15);
-- equation: HCO(32) (+M) <=> H(5) + CO(33) (+M)  # Reaction 811
-  type: falloff
-  low-P-rate-constant: {A: 2.76e+15, b: -0.504, Ea: 15.295}
-  high-P-rate-constant: {A: 3.79e+10, b: 1.079, Ea: 18.39}
-  Troe: {A: 0.09, T3: 1.0e-20, T1: -2200.0, T2: 1.0e+20}
-  efficiencies: {CH4(26): 3.0, H2(4): 1.5, H2O(44): 7.0, He(41): 0.71, Ar: 0.61,
-    CO2(34): 2.0}
-  note: |-
-    Reaction index: Chemkin #811; RMG #985
-    Library reaction: Think_fixed
+    - equation: HCO(32) (+M) <=> H(5) + CO(33) (+M)  # Reaction 811
+  type: linear-Burke
+  colliders:
+  - name: M
+    type: falloff
+    low-P-rate-constant: {A: 2.76e+15, b: -0.504, Ea: 15.295}
+    high-P-rate-constant: {A: 3.79e+10, b: 1.079, Ea: 18.39}
+    Troe: {A: 0.09, T3: 1.0e-20, T1: -2200.0, T2: 1.0e+20}
+  - name: H2(4)
+    efficiency: {A: 1.5, b: 0, Ea: 0}
+  - name: He(41)
+    efficiency: {A: 0.71, b: 0, Ea: 0}
+  - name: CO2(34)
+    efficiency: {A: 2.0, b: 0, Ea: 0}  
+  - name: CH4(26) 
+    efficiency: {A: 3.0, b: 0, Ea: 0}                                                         
+  - name: H2O(44)
+    efficiency: {A: 7.0, b: 0, Ea: 0}  
+  - name: Ar
+    efficiency: {A: 0.61, b: 0, Ea: 0}  
+  - name: NH3(1)
+    efficiency: {A: 3, b: 0, Ea: 0}  
     Flux pairs: HCO(32), H(5); HCO(32), CO(33);
     Reaction library: 'Think_fixed'
 - equation: CH2O(31) <=> H(5) + H(5) + CO(33)  # Reaction 812
@@ -9026,51 +9038,84 @@ reactions:
     Reaction index: Chemkin #845; RMG #2775
     PDep reaction: PDepNetwork #19
     Flux pairs: COHO(111), H(5); COHO(111), CO2(34);
-- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 846
+- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 447
   duplicate: true
-  type: pressure-dependent-Arrhenius
-  rate-constants:
-  - {P: 0.009869 atm, A: 6.99e+39, b: -8.698, Ea: 8.195}
-  - {P: 0.019738 atm, A: 6.849e+39, b: -8.601, Ea: 8.422}
-  - {P: 0.049346 atm, A: 2.69e+39, b: -8.368, Ea: 8.509}
-  - {P: 0.098692 atm, A: 1.162e+39, b: -8.176, Ea: 8.604}
-  - {P: 0.197385 atm, A: 4.475e+38, b: -7.971, Ea: 8.727}
-  - {P: 0.493462 atm, A: 8.785e+37, b: -7.656, Ea: 8.883}
-  - {P: 0.986923 atm, A: 4.429e+36, b: -7.213, Ea: 8.54}
-  - {P: 1.973847 atm, A: 4.193e+36, b: -7.116, Ea: 9.146}
-  - {P: 4.934616 atm, A: 2.785e+35, b: -6.679, Ea: 9.231}
-  - {P: 9.869233 atm, A: 2.379e+34, b: -6.303, Ea: 9.22}
-  - {P: 19.738465 atm, A: 1.4e+33, b: -5.886, Ea: 9.124}
-  - {P: 49.346163 atm, A: 1.987e+31, b: -5.283, Ea: 8.857}
-  - {P: 98.692327 atm, A: 5.207e+29, b: -4.783, Ea: 8.519}
-  - {P: 197.384653 atm, A: 9.811e+27, b: -4.252, Ea: 8.056}
-  - {P: 493.461633 atm, A: 5.627e+25, b: -3.576, Ea: 7.403}
+  type: linear-Burke
+  colliders:
+  - name: M
+    type: pressure-dependent-Arrhenius
+    rate-constants:
+    - {P: 0.009869 atm, A: 6.99e+39, b: -8.698, Ea: 8.195}
+    - {P: 0.019738 atm, A: 6.849e+39, b: -8.601, Ea: 8.422}
+    - {P: 0.049346 atm, A: 2.69e+39, b: -8.368, Ea: 8.509}
+    - {P: 0.098692 atm, A: 1.162e+39, b: -8.176, Ea: 8.604}
+    - {P: 0.197385 atm, A: 4.475e+38, b: -7.971, Ea: 8.727}
+    - {P: 0.493462 atm, A: 8.785e+37, b: -7.656, Ea: 8.883}
+    - {P: 0.986923 atm, A: 4.429e+36, b: -7.213, Ea: 8.54}
+    - {P: 1.973847 atm, A: 4.193e+36, b: -7.116, Ea: 9.146}
+    - {P: 4.934616 atm, A: 2.785e+35, b: -6.679, Ea: 9.231}
+    - {P: 9.869233 atm, A: 2.379e+34, b: -6.303, Ea: 9.22}
+    - {P: 19.738465 atm, A: 1.4e+33, b: -5.886, Ea: 9.124}
+    - {P: 49.346163 atm, A: 1.987e+31, b: -5.283, Ea: 8.857}
+    - {P: 98.692327 atm, A: 5.207e+29, b: -4.783, Ea: 8.519}
+    - {P: 197.384653 atm, A: 9.811e+27, b: -4.252, Ea: 8.056}
+    - {P: 493.461633 atm, A: 5.627e+25, b: -3.576, Ea: 7.403}
+  - name: O2(3)
+    efficiency: {A: 2.564e-02, b: 4.35861e-01, Ea: -2.79139e-01}
+  - name: CO2(34)
+    efficiency: {A: 2.0467e+00, b: 1.55696e-01, Ea: 2.00180e-01}
+  - name: NH3(1)
+    efficiency: {A: 3.3160e+00, b: 1.55280e-01, Ea: 3.57723e-01}
+  - name: H2O(44)
+    efficiency: {A: 2.5500e+00, b: 2.22128e-01, Ea: 4.24030e-01}
+  - name: CH4(26)
+    efficiency: {A: 2.8230e+00, b: 1.17828e-01, Ea: 3.34258e-01}
   note: |-
-    Example of MultiPDepArrhenius kinetics
-    Reaction index: Chemkin #846; RMG #973
-    Library reaction: primaryNitrogenLibrary
-- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 847
+    N2 is the reference collider 'M'
+    P. J. Singal, J. Lee, L. Lei, R. L. Speth, M. P. Burke, Implementation of New
+    Mixture Rules Has a Substantial Impact on Combustion Predictions for H2 and NH3,
+    Proc. Combust. Inst. 40 (2024)
+    A. W. Jasper, Predicting third-body collision efficiencies for water and other
+    polyatomic baths. Faraday Discuss. 238 (2022) 68-86
+- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 448
   duplicate: true
-  type: pressure-dependent-Arrhenius
-  rate-constants:
-  - {P: 0.009869 atm, A: 1.339e+32, b: -6.705, Ea: 2.669}
-  - {P: 0.019738 atm, A: 1.233e+32, b: -6.629, Ea: 2.748}
-  - {P: 0.049346 atm, A: 2.817e+31, b: -6.338, Ea: 2.74}
-  - {P: 0.098692 atm, A: 5.782e+30, b: -6.056, Ea: 2.687}
-  - {P: 0.197385 atm, A: 8.194e+29, b: -5.726, Ea: 2.597}
-  - {P: 0.493462 atm, A: 4.538e+28, b: -5.254, Ea: 2.436}
-  - {P: 0.986923 atm, A: 3.071e+26, b: -4.494, Ea: 2.042}
-  - {P: 1.973847 atm, A: 2.854e+26, b: -4.448, Ea: 2.115}
-  - {P: 4.934616 atm, A: 8.114e+24, b: -3.892, Ea: 1.87}
-  - {P: 9.869233 atm, A: 5.216e+23, b: -3.468, Ea: 1.673}
-  - {P: 19.738465 atm, A: 3.351e+22, b: -3.045, Ea: 1.468}
-  - {P: 49.346163 atm, A: 9.616e+20, b: -2.503, Ea: 1.196}
-  - {P: 98.692327 atm, A: 7.863e+19, b: -2.122, Ea: 0.998}
-  - {P: 197.384653 atm, A: 7.767e+18, b: -1.772, Ea: 0.811}
-  - {P: 493.461633 atm, A: 5.28e+17, b: -1.366, Ea: 0.593}
+  type: linear-Burke
+  colliders:
+  - name: M
+    type: pressure-dependent-Arrhenius
+    rate-constants:
+    - {P: 0.009869 atm, A: 1.339e+32, b: -6.705, Ea: 2.669}
+    - {P: 0.019738 atm, A: 1.233e+32, b: -6.629, Ea: 2.748}
+    - {P: 0.049346 atm, A: 2.817e+31, b: -6.338, Ea: 2.74}
+    - {P: 0.098692 atm, A: 5.782e+30, b: -6.056, Ea: 2.687}
+    - {P: 0.197385 atm, A: 8.194e+29, b: -5.726, Ea: 2.597}
+    - {P: 0.493462 atm, A: 4.538e+28, b: -5.254, Ea: 2.436}
+    - {P: 0.986923 atm, A: 3.071e+26, b: -4.494, Ea: 2.042}
+    - {P: 1.973847 atm, A: 2.854e+26, b: -4.448, Ea: 2.115}
+    - {P: 4.934616 atm, A: 8.114e+24, b: -3.892, Ea: 1.87}
+    - {P: 9.869233 atm, A: 5.216e+23, b: -3.468, Ea: 1.673}
+    - {P: 19.738465 atm, A: 3.351e+22, b: -3.045, Ea: 1.468}
+    - {P: 49.346163 atm, A: 9.616e+20, b: -2.503, Ea: 1.196}
+    - {P: 98.692327 atm, A: 7.863e+19, b: -2.122, Ea: 0.998}
+    - {P: 197.384653 atm, A: 7.767e+18, b: -1.772, Ea: 0.811}
+    - {P: 493.461633 atm, A: 5.28e+17, b: -1.366, Ea: 0.593}
+  - name: O2(3)
+    efficiency: {A: 2.564e-02, b: 4.35861e-01, Ea: -2.79139e-01}
+  - name: CO2(34)
+    efficiency: {A: 2.0467e+00, b: 1.55696e-01, Ea: 2.00180e-01}
+  - name: NH3(1)
+    efficiency: {A: 3.3160e+00, b: 1.55280e-01, Ea: 3.57723e-01}
+  - name: H2O(44)
+    efficiency: {A: 2.5500e+00, b: 2.22128e-01, Ea: 4.24030e-01}
+  - name: CH4(26)
+    efficiency: {A: 2.8230e+00, b: 1.17828e-01, Ea: 3.34258e-01}
   note: |-
-    Reaction index: Chemkin #847; RMG #973
-    Library reaction: primaryNitrogenLibrary
+    N2 is the reference collider 'M'
+    P. J. Singal, J. Lee, L. Lei, R. L. Speth, M. P. Burke, Implementation of New
+    Mixture Rules Has a Substantial Impact on Combustion Predictions for H2 and NH3,
+    Proc. Combust. Inst. 40 (2024)
+    A. W. Jasper, Predicting third-body collision efficiencies for water and other
+    polyatomic baths. Faraday Discuss. 238 (2022) 68-86
 - equation: H(5) + CH3NH2(35) <=> NH3(1) + CH3(27)  # Reaction 848
   rate-constant: {A: 7.8e+08, b: 1.17, Ea: 10.8}
   note: |-
