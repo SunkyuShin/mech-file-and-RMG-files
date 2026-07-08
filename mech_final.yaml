@@ -9038,7 +9038,7 @@ reactions:
     Reaction index: Chemkin #845; RMG #2775
     PDep reaction: PDepNetwork #19
     Flux pairs: COHO(111), H(5); COHO(111), CO2(34);
-- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 447
+- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 846
   duplicate: true
   type: linear-Burke
   colliders:
@@ -9077,7 +9077,7 @@ reactions:
     Proc. Combust. Inst. 40 (2024)
     A. W. Jasper, Predicting third-body collision efficiencies for water and other
     polyatomic baths. Faraday Discuss. 238 (2022) 68-86
-- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 448
+- equation: NH2(8) + CH3(27) <=> CH3NH2(35)  # Reaction 847
   duplicate: true
   type: linear-Burke
   colliders:
