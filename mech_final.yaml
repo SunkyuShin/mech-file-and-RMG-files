@@ -8729,7 +8729,7 @@ reactions:
     Reaction index: Chemkin #810; RMG #865
     Library reaction: primaryNitrogenLibrary
     Flux pairs: HCO(32), CO(33); NO(14), HNO(15);
-    - equation: HCO(32) (+M) <=> H(5) + CO(33) (+M)  # Reaction 811
+- equation: HCO(32) (+M) <=> H(5) + CO(33) (+M)  # Reaction 811
   type: linear-Burke
   colliders:
   - name: M
